@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.transaction.Transactional;
 
@@ -29,22 +30,20 @@ public class Controller {
     }
 
     @GetMapping
-    public Page<DtoRead> read(@PageableDefault(
+    public Page<DtoRead> list(@PageableDefault(
         size = 10, 
         page = 0, 
         sort = "dataCriacao",
         direction = Sort.Direction.DESC
-    ) Pageable p){
-        return repositoryPageable.listar(p);
+    ) Pageable p, @RequestParam(name = "ano", required = false) String ano){
+        if(ano == null){
+            return repositoryPageable.listar(p);
+        }          
+        return repositoryPageable.listarPeloAno(p, ano);
     }
 
-    @GetMapping("/{ano}")
-    public Page<DtoRead> read(@PageableDefault(
-        size = 10, 
-        page = 0, 
-        sort = "dataCriacao",
-        direction = Sort.Direction.DESC
-    ) Pageable p, @PathVariable(required = false) String ano){
-        return repositoryPageable.listarPeloAno(p, ano);
+    @GetMapping("/{id}")
+    public DtoRead read(@PathVariable Long id){
+        return repositoryDefault.encontrarPeloId(id);
     }
 }
