@@ -1,7 +1,12 @@
 package com.mobilebee.api.topico;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface Repository extends JpaRepository<Mapping, Long>{
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface Repository extends JpaRepository<Topico, Long>{
+    @Query("select t.titulo as titulo, t.mensagem as mensagem, t.dataCriacao as dataCriacao, " +
+    "t.status as status, t.autor as autor, t.curso as curso from Topico as t")
+    List<DtoRead> listar();
 }

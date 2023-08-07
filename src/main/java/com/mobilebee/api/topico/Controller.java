@@ -1,6 +1,9 @@
 package com.mobilebee.api.topico;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +18,12 @@ public class Controller {
 
     @PostMapping
     @Transactional
-    public void create(@RequestBody Dto d){
-        repository.save(new Mapping(d));
+    public void create(@RequestBody DtoCreate d){
+        repository.save(new Topico(d));
+    }
+
+    @GetMapping
+    public List<DtoRead> read(){
+        return repository.listar();
     }
 }

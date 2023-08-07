@@ -1,6 +1,6 @@
 package com.mobilebee.api.topico;
 
-public record Dto(
+public record DtoCreate(
     String titulo,
     String mensagem,
     String autor,

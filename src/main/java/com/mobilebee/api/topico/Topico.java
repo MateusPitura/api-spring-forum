@@ -14,7 +14,7 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "topicos")
-public class Mapping {
+public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,10 +28,10 @@ public class Mapping {
     @Enumerated(EnumType.STRING)
     private Curso curso;
 
-    public Mapping(){
+    public Topico(){
     }
 
-    public Mapping(Dto d){
+    public Topico(DtoCreate d){
         this.titulo = d.titulo();
         this.mensagem = d.mensagem();
         this.autor = d.autor();
