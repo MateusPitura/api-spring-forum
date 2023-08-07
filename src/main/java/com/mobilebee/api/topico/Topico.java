@@ -38,6 +38,18 @@ public class Topico {
         this.curso = d.curso();
     }
 
+    public void update(DtoUpdate d){
+        if(d.titulo() != null){
+            this.titulo = d.titulo();
+        }
+        if(d.mensagem() != null){
+            this.mensagem = d.mensagem();
+        }
+        if(d.curso() != null){
+            this.curso = d.curso();
+        }
+    }
+
     public Long getId() {
         return id;
     }

@@ -8,6 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,5 +46,12 @@ public class Controller {
     @GetMapping("/{id}")
     public DtoRead read(@PathVariable Long id){
         return repositoryDefault.encontrarPeloId(id);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public void update(@PathVariable Long id, @RequestBody DtoUpdate d){
+        Topico topico = repositoryDefault.getReferenceById(id);
+        topico.update(d);
     }
 }
