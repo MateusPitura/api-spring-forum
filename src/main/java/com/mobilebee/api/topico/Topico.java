@@ -50,6 +50,10 @@ public class Topico {
         }
     }
 
+    public void delete(){
+        this.status = false;
+    }
+
     public Long getId() {
         return id;
     }

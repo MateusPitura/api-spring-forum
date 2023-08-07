@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,7 +52,14 @@ public class Controller {
     @PutMapping("/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody DtoUpdate d){
-        Topico topico = repositoryDefault.getReferenceById(id);
+        Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
         topico.update(d);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id){
+        Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
+        topico.delete();
     }
 }
