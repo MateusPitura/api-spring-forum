@@ -5,4 +5,8 @@ public record DtoCreate(
     String mensagem,
     String autor,
     Curso curso
-){}
+){
+    public DtoCreate(Topico t){
+        this(t.getTitulo(), t.getMensagem(), t.getAutor(), t.getCurso());
+    }
+}
