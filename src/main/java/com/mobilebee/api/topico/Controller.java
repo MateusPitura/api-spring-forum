@@ -38,16 +38,16 @@ public class Controller {
     }
 
     @GetMapping
-    public Page<DtoRead> list(@PageableDefault(
+    public ResponseEntity<Page<DtoRead>> list(@PageableDefault(
         size = 10, 
         page = 0, 
         sort = "dataCriacao",
         direction = Sort.Direction.DESC
     ) Pageable p, @RequestParam(name = "ano", required = false) String ano){
         if(ano == null){
-            return repositoryPageable.listar(p);
+            return ResponseEntity.ok(repositoryPageable.listar(p));
         }          
-        return repositoryPageable.listarPeloAno(p, ano);
+        return ResponseEntity.ok(repositoryPageable.listarPeloAno(p, ano));
     }
 
     @GetMapping("/{id}")
