@@ -1,6 +1,7 @@
 package com.mobilebee.api.topico;
 
 import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +12,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "topicos")
@@ -18,13 +23,22 @@ public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O titulo não pode ser vazio")
     private String titulo;
+
     private String mensagem;
+
     @Column(name = "data_criacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao = new Date(); 
+
     private Boolean status = true;
+
+    @NotBlank(message = "O autor não pode ser vazio")
     private String autor;
+
+    @NotNull(message = "O curso não pode ser vazio")
     @Enumerated(EnumType.STRING)
     private Curso curso;
 

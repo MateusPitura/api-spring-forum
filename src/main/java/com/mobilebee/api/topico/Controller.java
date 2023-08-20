@@ -65,8 +65,9 @@ public class Controller {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id){
         Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
         topico.delete();
+        return ResponseEntity.noContent().build();
     }
 }
