@@ -51,8 +51,8 @@ public class Controller {
     }
 
     @GetMapping("/{id}")
-    public DtoRead read(@PathVariable Long id){
-        return repositoryDefault.encontrarPeloId(id);
+    public ResponseEntity read(@PathVariable Long id){
+        return ResponseEntity.ok(repositoryDefault.encontrarPeloId(id));
     }
 
     @PutMapping("/{id}")
