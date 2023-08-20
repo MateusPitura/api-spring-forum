@@ -57,9 +57,10 @@ public class Controller {
 
     @PutMapping("/{id}")
     @Transactional
-    public void update(@PathVariable Long id, @RequestBody DtoUpdate d){
+    public ResponseEntity update(@PathVariable Long id, @RequestBody DtoUpdate d){
         Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
         topico.update(d);
+        return ResponseEntity.ok(new DtoUpdate(topico));
     }
 
     @DeleteMapping("/{id}")
