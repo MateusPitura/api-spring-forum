@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/topico")
@@ -30,7 +32,7 @@ public class Controller {
 
     @PostMapping
     @Transactional
-    public ResponseEntity create(@RequestBody DtoCreate d, UriComponentsBuilder u){
+    public ResponseEntity create(@Valid @RequestBody DtoCreate d, UriComponentsBuilder u){
         Topico t = new Topico(d);
         repositoryDefault.save(t);
         var p = u.path("/topico/{id}").buildAndExpand(t.getId()).toUri();
@@ -57,7 +59,7 @@ public class Controller {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity update(@PathVariable Long id, @RequestBody DtoUpdate d){
+    public ResponseEntity update(@PathVariable Long id, @Valid @RequestBody DtoUpdate d){
         Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
         topico.update(d);
         return ResponseEntity.ok(new DtoUpdate(topico));
