@@ -63,7 +63,11 @@ public class Controller {
 
     @GetMapping("/{id}")
     public ResponseEntity read(@PathVariable Long id){
-        return ResponseEntity.ok(repositoryDefault.encontrarPeloId(id));
+        DtoRead d = repositoryDefault.encontrarPeloId(id);
+        if(d!=null){
+            return ResponseEntity.ok(d);
+        }
+        return ResponseEntity.badRequest().body("O id informado não existe ou foi excluído");
     }
 
     @PutMapping("/{id}")
