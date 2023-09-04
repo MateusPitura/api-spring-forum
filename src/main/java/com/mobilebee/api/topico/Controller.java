@@ -74,15 +74,21 @@ public class Controller {
     @Transactional
     public ResponseEntity update(@PathVariable Long id, @Valid @RequestBody DtoUpdate d){
         Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
-        topico.update(d);
-        return ResponseEntity.ok(new DtoUpdate(topico));
+        if(topico!=null){
+            topico.update(d);
+            return ResponseEntity.ok(new DtoUpdate(topico));
+        }
+        return ResponseEntity.badRequest().body("O id informado não existe ou foi excluído");
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity delete(@PathVariable Long id){
         Topico topico = repositoryDefault.getReferenceByIdAndStatusTrue(id);
-        topico.delete();
-        return ResponseEntity.noContent().build();
+        if(topico!=null){
+            topico.delete();
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.badRequest().body("O id informado não existe ou foi excluído");
     }
 }
