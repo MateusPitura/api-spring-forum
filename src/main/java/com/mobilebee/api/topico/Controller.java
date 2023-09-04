@@ -1,5 +1,7 @@
 package com.mobilebee.api.topico;
 
+import java.lang.reflect.Field;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,16 +42,23 @@ public class Controller {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DtoRead>> list(@PageableDefault(
+    public ResponseEntity list(@PageableDefault(
         size = 10, 
         page = 0, 
         sort = "dataCriacao",
         direction = Sort.Direction.DESC
     ) Pageable p, @RequestParam(name = "ano", required = false) String ano){
-        if(ano == null){
-            return ResponseEntity.ok(repositoryPageable.listar(p));
-        }          
-        return ResponseEntity.ok(repositoryPageable.listarPeloAno(p, ano));
+        Class<?> classe = Topico.class;
+        Field[] campos = classe.getDeclaredFields();
+        for(Field campo : campos){
+            if(p.getSort().toString().contains(campo.getName())){
+                if(ano == null){
+                    return ResponseEntity.ok(repositoryPageable.listar(p));
+                }          
+                return ResponseEntity.ok(repositoryPageable.listarPeloAno(p, ano));       
+            }
+        }
+        return ResponseEntity.badRequest().body("O atributo informado não existe");
     }
 
     @GetMapping("/{id}")
