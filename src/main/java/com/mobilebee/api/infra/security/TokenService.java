@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.mobilebee.api.users.DtoUser;
+import com.mobilebee.api.users.User;
 
 @Service
 public class TokenService {
@@ -16,12 +16,12 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String API;
 
-    public String g(DtoUser d){
+    public String g(User d){
         try{
             Algorithm a = Algorithm.HMAC256(API);
             return JWT.create()
             .withIssuer("API mobilebee.com")
-            .withSubject(d.username())
+            .withSubject(d.getUsername())
             .withExpiresAt(t())
             .sign(a);
         } catch(JWTCreationException e){
@@ -37,7 +37,7 @@ public class TokenService {
         try{
             Algorithm a = Algorithm.HMAC256(API);
             return JWT.require(a)
-            .withIssuer("API mobilee.com")
+            .withIssuer("API mobilebee.com")
             .build()
             .verify(k)
             .getSubject();

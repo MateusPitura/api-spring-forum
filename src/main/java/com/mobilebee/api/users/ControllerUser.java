@@ -28,9 +28,7 @@ public class ControllerUser {
     public ResponseEntity m(@RequestBody DtoUser d){
         var t = new UsernamePasswordAuthenticationToken(d.username(), d.password());
         var h = a.authenticate(t);
-        System.out.println("O que está retornado? " + h);
-        var j = s.g((DtoUser) h.getPrincipal());
-        System.out.println(j);
-        return ResponseEntity.ok(j);
+        var j = s.g((User) h.getPrincipal());
+        return ResponseEntity.ok(new DtoToken(j));
     }
 }
