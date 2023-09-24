@@ -20,4 +20,4 @@ CREATE TABLE IF NOT EXISTS users(
     PRIMARY KEY(id)
 );
 
-INSERT INTO users VALUES (DEFAULT, 'admin', 'admin');
+INSERT INTO users VALUES (DEFAULT, 'admin', '$2a$12$1bqD9p4GuMWEK18y9Dm6a.HF9XOn3Ffr4PThdyVXNkB.nzpTRQaJe');
