@@ -32,9 +32,10 @@ A aplicação é uma API REST desenvolvida em Spring que oferece um conjunto com
 **Para devs:** 
 
 1. Execute o código SQL `src/main/resources/db/V1__schema.sql`
-2. Faça o download de `api-0.0.1-SNAPSHOT.jar` nos Releases do GitHub
-3. Dê permissão para ser executado com `chmod +x api-0.0.1-SNAPSHOT.jar`
-4. Execute com `java -jar api-0.0.1-SNAPSHOT.jar`
+2. Crie duas variáveis de ambiente: uma `MYSQL` com a senha do seu banco de dados e outra `JWT_SECRET` com um valor qualquer
+3. Faça o download de `api-0.0.1-SNAPSHOT.jar` nos Releases do GitHub
+4. Dê permissão para ser executado com `chmod +x api-0.0.1-SNAPSHOT.jar`
+5. Execute com `java -jar api-0.0.1-SNAPSHOT.jar`
 
 ## Tecnologias usadas 
 
