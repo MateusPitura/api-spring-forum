@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/github/stars/MateusPitura/api-spring-forum?style=social" alt="Badge indicando quantidade de estrelas no repositório"> 
 </p> 
 
-> :checkered_flag: Este projeto está finalizado :checkered_flag:  
-
 ## Descrição 
 
 A aplicação é uma API REST desenvolvida em Spring que oferece um conjunto completo de operações CRUD para gerenciar posts de um fórum local. Além disso, a aplicação implementa autenticação via JWT (JSON Web Tokens) para garantir a segurança das rotas e controlar o acesso aos recursos
