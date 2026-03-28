@@ -22,7 +22,7 @@ A aplicação é uma API REST desenvolvida em Spring que oferece um conjunto com
 
 :oncoming_police_car: **Autenticação via JWT:** para acessar as funcionalidades da API, os usuários devem autenticar-se usando JSON Web Tokens. Isso garante a segurança das rotas e controla o acesso aos recursos
 
-:page_facing_up: **Documentação da API:** a aplicação inclui documentação completa da API, que pode ser acessada e testada usando o [Postman](https://documenter.getpostman.com/view/28639415/2s9YJW5ks9). Isso facilita o entendimento e uso da API 
+:page_facing_up: **Documentação da API:** a aplicação inclui documentação completa da API, que pode ser acessada e testada usando o [Postman](https://url.mateuspitura.com?q=documenter.getpostman.com/view/28639415/2s9YJW5ks9). Isso facilita o entendimento e uso da API 
 
 ## Como executar 
 
